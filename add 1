@@ -1,0 +1,46 @@
+int countKDifference(vector<int>& nums, int k) {
+        
+        int n = nums.size();
+    int cnt = 0;
+  
+    sort(nums.begin(), nums.end());
+    int i = 0, j = 0;
+  
+    while(j < n) {
+        
+    	if(nums[j] - nums[i] < k) 
+        	j++;
+       
+       
+        else if(nums[j] - nums[i] > k)
+        	i++;
+      
+        
+        else {
+			int ele1 = nums[i], ele2 = nums[j];
+            int cnt1 = 0, cnt2 = 0;
+          
+            
+            while(j < n && nums[j] == ele2) {
+                j++;
+                cnt2++;
+            }
+          
+           
+            while(i < n && nums[i] == ele1) {
+                i++;
+                cnt1++;
+            }
+          
+            
+            if(ele1 == ele2) 
+            	cnt += (cnt1 * (cnt1 - 1))/2;
+          
+            
+            else 
+            	cnt += (cnt1 * cnt2);
+        }
+    }
+    return cnt;
+}
+    
